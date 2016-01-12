@@ -1,0 +1,31 @@
+##104. Maximum Depth of Binary Tree
+
+>Given a binary tree, find its maximum depth.<br>
+The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+
+给定一个二叉树，找出数值最大的树枝。
+
+**分析：**通过递归遍历二叉树，每次递归通过比较左右节点取最大值，结果即是数值最大树枝。
+
+	/**
+	 * Definition for a binary tree node.
+	 * function TreeNode(val) {
+	 *     this.val = val;
+	 *     this.left = this.right = null;
+	 * }
+	 */
+	/**
+	 * @param {TreeNode} root
+	 * @return {number}
+	 */
+	var maxDepth = function(root) {
+	    var res = 1;
+	    if (root === null){
+	        return 0
+	    }
+	    res += max(maxDepth(root.left), maxDepth(root.right));
+	    return res;
+	};
+	function max(a, b){
+	    return a > b ? a : b;
+	}
